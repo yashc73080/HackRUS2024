@@ -42,9 +42,9 @@ def handle_first_call():
 def handle_recommendation():
     try:
         # Assuming the body is a string that can be safely evaluated as a list
-        choices_str = request.data.decode('utf-8')
-        print(choices_str)
-        choices = ast.literal_eval(choices_str)  # Safely evaluate string to Python literal
+        data = request.get_json()
+        print(data)
+        choices = data['array']  # Safely evaluate string to Python literal
         print(choices)
 
         if not isinstance(choices, list) or not all(isinstance(item, int) for item in choices):
