@@ -33,7 +33,8 @@ app = Flask(__name__)
 @app.route('/firstCall', methods=['GET'])
 def handle_first_call():
     books = firstBookCall()
-    return jsonify(books)
+    print(books)
+    return books
 
 @app.route('/recommend', methods=['POST'])
 def handle_recommendation():
@@ -50,7 +51,8 @@ def handle_recommendation():
 
     genres = getGenres(choices)
     reccs = getBookRecs(genres)
-    return jsonify(reccs)
+    print(reccs)
+    return reccs
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
