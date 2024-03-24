@@ -1,6 +1,8 @@
 from RecommendGenres import *
 import numpy as np
 import pandas as pd
+import ast
+import random
 
 df = pd.read_csv('flask-project/cleaned_goodreads_data.csv') 
 
@@ -28,22 +30,21 @@ def getGenres(choices: list):
 
     return allGenres
 
-# # Function to generate recommendations based on array recieved from HTML
-# bookRecommendations = []
-# choices = [0] #get from html
-# genres = getGenres(choices)
-# print(f'Genres: {genres}')
+# Function to generate recommendations based on array recieved from HTML
+bookRecommendations = []
+def getBookRecs(genresList: list):
+    for i in range(0,len(genresList)):
+        recommendation = recommend_genres(genresList[i])
 
-# def getBookRecs(genresList: list):
-#     for i in range(0,len(genresList)):
-#         recommendation = recommend_genres(genresList[i]).tolist()
-#         print(f'Recommendation for {genresList[i]}: {recommendation}')
-#         bookRecommendations.extend(recommendation)
-    
-#     return bookRecommendations
+        for rec in recommendation:
+            bookRecommendations.extend(rec)
 
-# firstBookCall()
-# print(getBookRecs(genres))
+    if len(bookRecommendations) >= 12:
+        return random.sample(bookRecommendations, 12)
+    else:
+        return bookRecommendations
 
 print(firstBookCall())
-print(getGenres([0]))
+choices = [0] #get from html
+genres = getGenres(choices)
+print(getBookRecs(genres))

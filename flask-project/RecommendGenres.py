@@ -33,7 +33,8 @@ model.fit(X)
 def recommend_genres(genre):
     query = vectorizer.transform([genre])
     distances, indices = model.kneighbors(query)
-    return df['Genres'].iloc[indices[0]] 
+    # return df['Genres'].iloc[indices[0]]
+    return df[['Book', 'Author', 'Description', 'Genres', 'Avg_Rating']].iloc[indices[0]].values.tolist()
 
 # Test
 
