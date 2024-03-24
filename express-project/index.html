@@ -191,7 +191,7 @@
 									function loadBooks() {
 										fetch("http://127.0.0.1:5000/firstCall", {
                                             method: "POST",
-                                            body: Array.toString(deleteEmpty)
+                                            body: JSON.stringify({ array: deleteEmpty })
                                         });
 									}
 									
@@ -221,7 +221,7 @@
                                         // Sends a POST request to the flask server.
                                         reccs = fetch("http://127.0.0.1:5000/recommend", {
                                             method: "POST",
-                                            body: Array.toString(deleteEmpty)
+                                            body: JSON.stringify({ array: deleteEmpty })
                                         });
 
                                         var title = "";
