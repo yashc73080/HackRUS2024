@@ -26,6 +26,8 @@
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+import numpy as np
+import json
 import ast  # Import Abstract Syntax Trees module to safely evaluate string expressions
 from RecommendBooks import firstBookCall, getGenres, getBookRecs
 
@@ -35,28 +37,20 @@ CORS(app)
 @app.route('/firstCall', methods=['GET'])
 def handle_first_call():
     books = firstBookCall()
-    print(books)
     return books
 
 @app.route('/recommend', methods=['POST'])
 def handle_recommendation():
     try:
-        # Assuming the body is a string that can be safely evaluated as a list
-        data = request.get_json()
-        print(data)
-        choices = data['array']  # Safely evaluate string to Python literal
-        print(choices)
-
-        if not isinstance(choices, list) or not all(isinstance(item, int) for item in choices):
+        data = request.json
+        intList = [int(value) for value in data['array']]
+        if not isinstance(intList, list) or not all(isinstance(item, int) for item in intList):
             raise ValueError("Invalid input format. Expected an array of integers.")
-
     except (ValueError, SyntaxError) as e:
         return f"Error parsing input: {e}", 400
 
-    genres = getGenres(choices)
+    genres = getGenres(intList)
     reccs = getBookRecs(genres)
-    print("---------------------------------------")
-    print(reccs)
     return reccs
 
 if __name__ == "__main__":

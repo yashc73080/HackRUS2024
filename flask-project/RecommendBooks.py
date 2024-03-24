@@ -26,7 +26,7 @@ def getGenres(choices: list):
             for genre in genresForBook:
                 genre = genre.strip().strip('\'"')
                 allGenres.append(genre)   
-
+    print("check GENRES")
     return allGenres
 
 # # Function to generate recommendations based on array recieved from HTML
@@ -67,7 +67,7 @@ def getBookRecs(genresList: list):
     else:
         modifiedBookRecommendations = random.sample(modifiedBookRecommendations, 12)
 
-    return modifiedBookRecommendations
+    return [[book[0], book[1], book[2]] for book in modifiedBookRecommendations]
 
     # # Randomly sample 12 recommendations if there are more than 12, else return all
     # if len(modifiedBookRecommendations) >= 12:
