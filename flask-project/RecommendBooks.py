@@ -53,18 +53,29 @@ def getGenres(choices: list):
 
 # Function to generate recommendations based on array received from HTML
 def getBookRecs(genresList: list):
-    modifiedBookRecommendations = []  # Initialize a new list to store the modified recommendations
+    modifiedBookRecommendations = [] 
     for genre in genresList:
         recommendation = recommend_book_lists(genre)
         for rec in recommendation:
-            # Append the entire recommendation as a sublist
             modifiedBookRecommendations.append(rec)
-
-    # Randomly sample 12 recommendations if there are more than 12, else return all
-    if len(modifiedBookRecommendations) >= 12:
-        return random.sample(modifiedBookRecommendations, 12)
+    
+    if len(modifiedBookRecommendations) < 12:
+        needed = 12 - len(modifiedBookRecommendations)
+        additional_books = df.sample(n=needed).reset_index()
+        for i in range(needed):
+            book = additional_books.iloc[i]
+            modifiedBookRecommendations.append([book['Book'], book['Author'], book['Description'], book['Genres'], book['Avg_Rating'], book['index']])
     else:
-        return modifiedBookRecommendations
+        modifiedBookRecommendations = random.sample(modifiedBookRecommendations, 12)
+
+    return modifiedBookRecommendations
+
+    # # Randomly sample 12 recommendations if there are more than 12, else return all
+    # if len(modifiedBookRecommendations) >= 12:
+    #     return random.sample(modifiedBookRecommendations, 12)
+    # else:
+    #     return modifiedBookRecommendations
+
 
 # Example usage
 firstBookCall()
