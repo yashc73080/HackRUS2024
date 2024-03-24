@@ -4,7 +4,6 @@ import pandas as pd
 
 df = pd.read_csv('flask-project/cleaned_goodreads_data.csv') 
 
-
 # Function to return array of name, description, index for the first time
 books_array = []
 def firstBookCall():
@@ -17,20 +16,28 @@ def firstBookCall():
 
     return books_array
 
-
 # Function to get a complete list of genres based on choices
 allGenres = []
 def getGenres(choices: list):
     for j in choices:
-        genresForBook = books_array[j][3]
-        for genre in genresForBook:
-            print(genre)
-            # allGenres.append(genre)
-    
-    print(genresForBook)
+        if j < len(books_array):
+            genresForBook = books_array[j][3].strip('[]').split(',')
+            for genre in genresForBook:
+                genre = genre.strip().strip('\'"')
+                allGenres.append(genre)   
 
-firstBookCall()
-getGenres([0])
-
+    return allGenres
 
 # Function to generate recommendations based on array recieved from HTML
+bookRecommendations = []
+choices = [0] #get from html
+genres = getGenres(choices)
+def getBookRecs(genresList: list):
+    for i in range(0,len(genresList)):
+        recommendation = recommend_genres(genresList[i]).tolist()
+        bookRecommendations.extend(recommendation)
+    
+    return bookRecommendations
+
+firstBookCall()
+print(getBookRecs(genres))
