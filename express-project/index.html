@@ -189,9 +189,9 @@
 
 								<script>
 									function loadBooks() {
-										fetch("http://localhost:5000/firstCall", {
+										fetch("http://127.0.0.1:5000/firstCall", {
                                             method: "POST",
-                                            body: JSON.stringify(deleteEmpty)
+                                            body: Array.toString(deleteEmpty)
                                         });
 									}
 									
@@ -219,9 +219,9 @@
 										var reccs = []; // replace [] with call to python function
 
                                         // Sends a POST request to the flask server.
-                                        reccs = fetch("http://localhost:5000/recommend", {
+                                        reccs = fetch("http://127.0.0.1:5000/recommend", {
                                             method: "POST",
-                                            body: JSON.stringify(deleteEmpty)
+                                            body: Array.toString(deleteEmpty)
                                         });
 
                                         var title = "";
