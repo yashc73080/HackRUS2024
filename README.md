@@ -1,5 +1,13 @@
 # HackRUS2024
 
+## HOW TO RUN
+```
+cd HackRUS2024  # if not already in the cwd
+python3 flask-project/flask-server.py  # start up the flask server at port 5000
+cd express-project  # navigate to the express project directory
+node index  # start up the express server at port 3000
+```
+
 ## Inspiration
 The modern-day allure of endlessly scrolling through social media sites inspired us to make this app, which guides the user in an infinite quest for a captivating and compelling read. The members of our group all love reading and derive inspiration from a wide variety of subject areas, many of which are reflected in our app’s vast selection of books. Our project curates a unique and satisfying user experience that is bound to help all users pursue knowledge and leisure. We intend to further education with our project by encouraging more people to enjoy the pleasures of reading. 
 
