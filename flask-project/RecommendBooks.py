@@ -30,21 +30,44 @@ def getGenres(choices: list):
 
     return allGenres
 
-# Function to generate recommendations based on array recieved from HTML
-bookRecommendations = []
+# # Function to generate recommendations based on array recieved from HTML
+# bookRecommendations = []
+# def getBookRecs(genresList: list):
+#     # print(f'Genres: {genresList}')  # Debug print
+#     for i in range(0,len(genresList)):
+#         recommendation = recommend_book_lists(genresList[i])
+#         # print(f'Recommendation for {genresList[i]}: {recommendation}')  # Debug print
+
+#         for rec in recommendation:
+#             bookRecommendations.extend(rec)
+
+#     if len(bookRecommendations) >= 12:
+#         return random.sample(bookRecommendations, 12)
+#     else:
+#         return bookRecommendations
+
+# firstBookCall()
+# choices = [0,1,2] #get from html
+# genres = getGenres(choices)
+# print(getBookRecs(genres))
+
+# Function to generate recommendations based on array received from HTML
 def getBookRecs(genresList: list):
-    for i in range(0,len(genresList)):
-        recommendation = recommend_genres(genresList[i])
-
+    modifiedBookRecommendations = []  # Initialize a new list to store the modified recommendations
+    for genre in genresList:
+        recommendation = recommend_book_lists(genre)
         for rec in recommendation:
-            bookRecommendations.extend(rec)
+            # Append the entire recommendation as a sublist
+            modifiedBookRecommendations.append(rec)
 
-    if len(bookRecommendations) >= 12:
-        return random.sample(bookRecommendations, 12)
+    # Randomly sample 12 recommendations if there are more than 12, else return all
+    if len(modifiedBookRecommendations) >= 12:
+        return random.sample(modifiedBookRecommendations, 12)
     else:
-        return bookRecommendations
+        return modifiedBookRecommendations
 
-print(firstBookCall())
-choices = [0] #get from html
+# Example usage
+firstBookCall()
+choices = [0,1,2]  # Example choices
 genres = getGenres(choices)
 print(getBookRecs(genres))
