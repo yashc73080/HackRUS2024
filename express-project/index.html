@@ -32,7 +32,7 @@
 					<div id="main">
 						<div class="inner">
 							<header>
-								<h1>Welcome to Binder, like Tinder but for books :P<br />
+								<h1>Welcome to Binder, like Tinder but for books :<br />
 								<a href="http://html5up.net"></a></h1>
 								<p>Simply click on the books you like, and Binder will take care of the rest!</p>
 							</header>
@@ -193,7 +193,8 @@
 										for(let i = 0; i < inputArr.length; i++) {
 											if(inputArr[i] != null) {
 												deleteEmpty[counter] = inputArr[i];
-												counter++
+												counter++;
+												//document.getElementById("article" + i).classList.toggle('border-on-click');
 											}
 										}
 										var reccs = []; // replace [] with call to python function
@@ -213,12 +214,19 @@
 											document.getElementById(desc).innerHTML = reccs[0];
 										}
 									}
+									
+									function toggleOffBorder() {
+										var articles = document.querySelectorAll('.border-on-click');
+										articles.forEach(function(article) {
+											article.classList.remove('border-on-click');
+										});
+									}
 								</script>
 							</section>
 							<br>
 							<section>
 								<ul class="actions">
-									<li><a href="#" class="button primary" onclick="getRecommendations()">Recommend More Books!</a></li>
+									<li><a href="#" class="button primary" onclick="getRecommendations(); toggleOffBorder()">Recommend More Books!</a></li>
 								</ul>
 							</section>
 						</div>
