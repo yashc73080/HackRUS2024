@@ -11,8 +11,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+		<script type="text/javascript">
+			function loadBooks() {
+				fetch("http://127.0.0.1:5000/firstCall", {
+                    method: "GET"
+                });
+				console.log("hi");
+			}
+		</script>
 	</head>
-	<body onload="loadBooks()" class="is-preload">
+	<body onload="loadBooks();" class="is-preload">
 		<!-- Wrapper -->
 			<div id="wrapper">
 
@@ -188,12 +196,12 @@
 								</article>
 
 								<script>
-									function loadBooks() {
-										fetch("http://127.0.0.1:5000/firstCall", {
-                                            method: "POST",
-                                            body: JSON.stringify({ array: deleteEmpty })
-                                        });
-									}
+									// function loadBooks() {
+									// 	fetch("http://127.0.0.1:5000/firstCall", {
+                                    //         method: "POST",
+                                    //         body: Array.toString(deleteEmpty)
+                                    //     });
+									// }
 									
 									var inputArr = [];
 
