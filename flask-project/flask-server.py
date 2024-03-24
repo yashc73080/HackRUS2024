@@ -15,8 +15,7 @@ def handle_post_request_1():
 
 @app.route('/recommend', methods=['POST'])
 def handle_post_request_2():
-    data = request.data.split(',')
-    choices = json.loads(data)
+    choices = request.data.split(',')
     genres = getGenres(choices)
     reccs = getBookRecs(genres)
     print(reccs)
