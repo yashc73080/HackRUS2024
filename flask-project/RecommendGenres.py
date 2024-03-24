@@ -13,7 +13,7 @@ df = df[df['Genres'].astype(str) != '[]']
 df = df.reset_index(drop=True)
 
 
-## Making the Model
+# Making the Model
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.neighbors import NearestNeighbors
@@ -37,4 +37,4 @@ def recommend_genres(genre):
 
 # Test
 
-print(recommend_genres('Dystopia'))
+# print(recommend_genres('Dystopia'))
