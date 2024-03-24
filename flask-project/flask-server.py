@@ -56,7 +56,7 @@ def handle_recommendation():
     genres = getGenres(choices)
     reccs = getBookRecs(genres)
     print("---------------------------------------")
-    print(reccs);
+    print(reccs)
     return reccs
 
 if __name__ == "__main__":
