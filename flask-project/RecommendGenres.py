@@ -30,11 +30,15 @@ model.fit(X)
 
 # Predictions
 
-def recommend_genres(genre):
+def recommend_book_lists(genre):
     query = vectorizer.transform([genre])
     distances, indices = model.kneighbors(query)
     # return df['Genres'].iloc[indices[0]]
-    return df[['Book', 'Author', 'Description', 'Genres', 'Avg_Rating']].iloc[indices[0]].values.tolist()
+    recommendations = df[['Book', 'Author', 'Description', 'Genres', 'Avg_Rating']].iloc[indices[0]].values.tolist()
+    for i in range(len(recommendations)):
+        recommendations[i].insert(5, indices[0][i])
+
+    return recommendations
 
 # Test
 

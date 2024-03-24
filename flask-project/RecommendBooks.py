@@ -30,21 +30,55 @@ def getGenres(choices: list):
 
     return allGenres
 
-# Function to generate recommendations based on array recieved from HTML
-bookRecommendations = []
+# # Function to generate recommendations based on array recieved from HTML
+# bookRecommendations = []
+# def getBookRecs(genresList: list):
+#     # print(f'Genres: {genresList}')  # Debug print
+#     for i in range(0,len(genresList)):
+#         recommendation = recommend_book_lists(genresList[i])
+#         # print(f'Recommendation for {genresList[i]}: {recommendation}')  # Debug print
+
+#         for rec in recommendation:
+#             bookRecommendations.extend(rec)
+
+#     if len(bookRecommendations) >= 12:
+#         return random.sample(bookRecommendations, 12)
+#     else:
+#         return bookRecommendations
+
+# firstBookCall()
+# choices = [0,1,2] #get from html
+# genres = getGenres(choices)
+# print(getBookRecs(genres))
+
+# Function to generate recommendations based on array received from HTML
 def getBookRecs(genresList: list):
-    for i in range(0,len(genresList)):
-        recommendation = recommend_genres(genresList[i])
-
+    modifiedBookRecommendations = [] 
+    for genre in genresList:
+        recommendation = recommend_book_lists(genre)
         for rec in recommendation:
-            bookRecommendations.extend(rec)
-
-    if len(bookRecommendations) >= 12:
-        return random.sample(bookRecommendations, 12)
+            modifiedBookRecommendations.append(rec)
+    
+    if len(modifiedBookRecommendations) < 12:
+        needed = 12 - len(modifiedBookRecommendations)
+        additional_books = df.sample(n=needed).reset_index()
+        for i in range(needed):
+            book = additional_books.iloc[i]
+            modifiedBookRecommendations.append([book['Book'], book['Author'], book['Description'], book['Genres'], book['Avg_Rating'], book['index']])
     else:
-        return bookRecommendations
+        modifiedBookRecommendations = random.sample(modifiedBookRecommendations, 12)
 
-print(firstBookCall())
-choices = [0] #get from html
+    return modifiedBookRecommendations
+
+    # # Randomly sample 12 recommendations if there are more than 12, else return all
+    # if len(modifiedBookRecommendations) >= 12:
+    #     return random.sample(modifiedBookRecommendations, 12)
+    # else:
+    #     return modifiedBookRecommendations
+
+
+# Example usage
+firstBookCall()
+choices = [0,1,2]  # Example choices
 genres = getGenres(choices)
 print(getBookRecs(genres))
