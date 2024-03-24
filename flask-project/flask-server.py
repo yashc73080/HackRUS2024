@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from RecommendedBooks import *
+from RecommendBooks import *
 
 app = Flask(__name__)
 
