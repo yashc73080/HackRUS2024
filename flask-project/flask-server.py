@@ -10,7 +10,6 @@ def index():
 @app.route('/firstCall', methods=['POST'])
 def handle_post_request_1():
     reccs = request.data.split(',')
-    print("IT GOT CALLED")
     print(reccs)
     return reccs
 
@@ -20,7 +19,6 @@ def handle_post_request_2():
     choices = json.loads(data)
     genres = getGenres(choices)
     reccs = getBookRecs(genres)
-    print("It got called")
     print(reccs)
     return reccs
 
