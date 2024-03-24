@@ -78,7 +78,7 @@ def getBookRecs(genresList: list):
 
 
 # Example usage
-firstBookCall()
-choices = [0,1,2]  # Example choices
-genres = getGenres(choices)
-print(getBookRecs(genres))
+# firstBookCall()
+# choices = [0,1,2]  # Example choices
+# genres = getGenres(choices)
+# print(getBookRecs(genres))
