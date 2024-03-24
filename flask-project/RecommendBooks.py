@@ -1,10 +1,9 @@
 from RecommendGenres import *
 import numpy as np
 import pandas as pd
-import ast
 import random
 
-df = pd.read_csv('flask-project/cleaned_goodreads_data.csv') 
+df = pd.read_csv('flask-project/FINAL_DATA.csv') 
 
 # Function to return array of name, description, index for the first time
 books_array = []

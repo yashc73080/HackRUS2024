@@ -3,7 +3,7 @@
 import numpy as np
 import pandas as pd
 
-df = pd.read_csv('flask-project/goodreads_data.csv')
+df = pd.read_csv('flask-project/data_with_shorter_descriptions.csv')
 
 df.drop('uselessNumbers', axis=1, inplace=True)
 df.drop('Num_Ratings', axis=1, inplace=True)
@@ -12,6 +12,7 @@ df.drop('URL', axis=1, inplace=True)
 df = df[df['Genres'].astype(str) != '[]']
 df = df.reset_index(drop=True)
 
+df.to_csv('FINAL_DATA.csv', index=False)
 
 # Making the Model
 
@@ -42,4 +43,4 @@ def recommend_book_lists(genre):
 
 # Test
 
-# print(recommend_genres('Dystopia'))
+print(recommend_book_lists('Dystopia'))
