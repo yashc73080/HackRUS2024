@@ -16,7 +16,17 @@
 				fetch("http://127.0.0.1:5000/firstCall", {
                     method: "GET"
                 }).then(response => response.json()).then(data => {
-                    console.log(data);
+                    var title = "";
+                    var author = "";
+					var desc = "";
+					for(let i = 0; i < 12; i++) {
+					    title = "title" + i;
+                        author = "author" + i;
+					    desc = "desc" + i;
+					    document.getElementById(title).innerHTML = data[i][0]
+                        document.getElementById(author).innerHTML = data[i][1]
+					    document.getElementById(desc).innerHTML = data[i][2]
+					}
                 });
 			}
 		</script>
@@ -228,19 +238,25 @@
 										var reccs = []; // replace [] with call to python function
 
                                         // Sends a POST request to the flask server.
-                                        reccs = fetch("http://127.0.0.1:5000/recommend", {
+                                        fetch("http://127.0.0.1:5000/recommend", {
                                             method: "POST",
+                                            headers: {
+                                                "Content-Type": "application/json",
+                                            },
                                             body: JSON.stringify({ array: deleteEmpty })
+                                        }).then(response => response.json()).then(data => {
+                                            var title = "";
+                                            var author = "";
+                                            var desc = "";
+                                            for(let i = 0; i < 12; i++) {
+                                                title = "title" + i;
+                                                author = "author" + i;
+                                                desc = "desc" + i;
+                                                document.getElementById(title).innerHTML = data[i][0]
+                                                document.getElementById(author).innerHTML = data[i][1]
+                                                document.getElementById(desc).innerHTML = data[i][2]
+                                            }
                                         });
-
-                                        var title = "";
-										var desc = "";
-										for(let i = 0; i < 12; i++) {
-											title = "title" + i;
-											desc = "desc" + i;
-											document.getElementById(title).innerHTML = reccs[0];
-											document.getElementById(desc).innerHTML = reccs[0];
-										}
 									}
 									
 									function toggleOffBorder() {
