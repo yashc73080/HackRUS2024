@@ -197,7 +197,14 @@
 											}
 										}
 										var reccs = []; // replace [] with call to python function
-										var title = "";
+
+                                        // Sends a POST request to the flask server.
+                                        fetch("http://localhost:5000", {
+                                            method: "POST",
+                                            body: JSON.stringify(deleteEmpty)
+                                        });
+
+                                        var title = "";
 										var desc = "";
 										for(let i = 0; i < 12; i++) {
 											title = "title" + i;
