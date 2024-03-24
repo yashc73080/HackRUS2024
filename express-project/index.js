@@ -3,7 +3,6 @@ const app = express();
 const request = require('request');
 
 app.use(express.json());
-const PORT = 3000;
 
 var liveServer = require("live-server");
 var params = {
@@ -18,11 +17,11 @@ var params = {
 }
 liveServer.start(params);
 
-app.post('/', function(req, res) {
-    request('http://127.0.0.1:5000/flask', function (error, response, body) {
-        console.error('error:', error); // Print the error
-        console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-        console.log('body:', body); // Print the data received
-        // res.send(body); //Display the response on the website
-      });
-});
+// app.post('/home', function(req, res) {
+//     request('http://127.0.0.1:5000/flask', function (error, response, body) {
+//         console.error('error:', error); // Print the error
+//         console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+//         console.log('body:', body); // Print the data received
+//         // res.send(body); //Display the response on the website
+//       });
+// });
