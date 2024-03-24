@@ -1,7 +1,11 @@
-const express = require('express')
+const express = require('express');
+const app = express();
 const request = require('request');
+const bodyParser = require("body-parser");
 
-app = express();
+app.set('view engine', 'ejs');
+app.use('/assets', express.static('assets'));
+app.use(express.json());
 const PORT = 3000;
 
 app.get('/home', function(req, res) {
@@ -11,6 +15,7 @@ app.get('/home', function(req, res) {
         console.log('body:', body); // Print the data received
         res.send(body); //Display the response on the website
       });
+    res.render("index");
 });
 
 app.listen(PORT, function (){ 
