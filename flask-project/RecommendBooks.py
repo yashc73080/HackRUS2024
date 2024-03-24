@@ -28,16 +28,22 @@ def getGenres(choices: list):
 
     return allGenres
 
-# Function to generate recommendations based on array recieved from HTML
-bookRecommendations = []
-choices = [0] #get from html
-genres = getGenres(choices)
-def getBookRecs(genresList: list):
-    for i in range(0,len(genresList)):
-        recommendation = recommend_genres(genresList[i]).tolist()
-        bookRecommendations.extend(recommendation)
-    
-    return bookRecommendations
+# # Function to generate recommendations based on array recieved from HTML
+# bookRecommendations = []
+# choices = [0] #get from html
+# genres = getGenres(choices)
+# print(f'Genres: {genres}')
 
-firstBookCall()
-print(getBookRecs(genres))
+# def getBookRecs(genresList: list):
+#     for i in range(0,len(genresList)):
+#         recommendation = recommend_genres(genresList[i]).tolist()
+#         print(f'Recommendation for {genresList[i]}: {recommendation}')
+#         bookRecommendations.extend(recommendation)
+    
+#     return bookRecommendations
+
+# firstBookCall()
+# print(getBookRecs(genres))
+
+print(firstBookCall())
+print(getGenres([0]))
