@@ -16,5 +16,8 @@
     "live-server": "^1.2.2",
     "mongodb": "^6.5.0",
     "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1"
   }
 }
