@@ -1,2 +1,4 @@
 /flask-project/__pycache__
-/.env
+/.env4
+__pycache__/
+.env
